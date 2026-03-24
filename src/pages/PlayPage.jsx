@@ -52,72 +52,85 @@ export default function PlayPage() {
 
     const now = ctx.currentTime
     const melody = stage === 1
-      ? [659.25, 783.99, 1046.5, 1318.51, 1567.98, 1318.51, 1760]
-      : [523.25, 659.25, 783.99, 1046.5, 1318.51, 1567.98, 1760, 2093, 2349.32]
+      ? [659.25, 783.99, 1046.5, 1318.51, 1567.98, 1318.51, 1760, 1567.98, 2093]
+      : [523.25, 659.25, 783.99, 1046.5, 1318.51, 1567.98, 1760, 2093, 2349.32, 2093, 2637.02]
 
     const chords = stage === 1
-      ? [[261.63, 329.63, 392], [293.66, 369.99, 440], [329.63, 415.3, 493.88], [392, 493.88, 587.33]]
-      : [[261.63, 329.63, 392], [329.63, 415.3, 493.88], [392, 493.88, 587.33], [523.25, 659.25, 783.99]]
+      ? [[261.63, 329.63, 392], [293.66, 369.99, 440], [329.63, 415.3, 493.88], [392, 493.88, 587.33], [440, 554.37, 659.25]]
+      : [[261.63, 329.63, 392], [329.63, 415.3, 493.88], [392, 493.88, 587.33], [523.25, 659.25, 783.99], [659.25, 783.99, 987.77]]
 
     melody.forEach((freq, index) => {
-      const start = now + index * 0.16
+      const start = now + index * 0.15
       const osc = ctx.createOscillator()
       const gain = ctx.createGain()
       osc.type = index % 2 === 0 ? 'triangle' : 'sawtooth'
       osc.frequency.setValueAtTime(freq, start)
       gain.gain.setValueAtTime(0.0001, start)
-      gain.gain.linearRampToValueAtTime(0.16, start + 0.02)
-      gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.28)
+      gain.gain.linearRampToValueAtTime(0.19, start + 0.02)
+      gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.34)
       osc.connect(gain)
       gain.connect(ctx.destination)
       osc.start(start)
-      osc.stop(start + 0.3)
+      osc.stop(start + 0.36)
     })
 
     chords.forEach((chord, chordIndex) => {
-      const start = now + chordIndex * 0.32
+      const start = now + chordIndex * 0.3
       chord.forEach((freq, noteIndex) => {
         const osc = ctx.createOscillator()
         const gain = ctx.createGain()
         osc.type = noteIndex === 1 ? 'square' : 'sine'
         osc.frequency.setValueAtTime(freq, start)
         gain.gain.setValueAtTime(0.0001, start)
-        gain.gain.linearRampToValueAtTime(0.06, start + 0.03)
-        gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.46)
+        gain.gain.linearRampToValueAtTime(0.075, start + 0.03)
+        gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.58)
         osc.connect(gain)
         gain.connect(ctx.destination)
         osc.start(start)
-        osc.stop(start + 0.5)
+        osc.stop(start + 0.62)
       })
     })
 
-    ;[0, 0.18, 0.36, 0.54, 0.72, 0.9].forEach((offset, index) => {
+    ;[0, 0.16, 0.32, 0.48, 0.64, 0.8, 0.96, 1.12].forEach((offset, index) => {
       const osc = ctx.createOscillator()
       const gain = ctx.createGain()
       osc.type = 'square'
       osc.frequency.setValueAtTime(index % 2 === 0 ? 110 : 98, now + offset)
       gain.gain.setValueAtTime(0.0001, now + offset)
-      gain.gain.linearRampToValueAtTime(0.12, now + offset + 0.01)
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + offset + 0.14)
+      gain.gain.linearRampToValueAtTime(0.13, now + offset + 0.01)
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + offset + 0.16)
       osc.connect(gain)
       gain.connect(ctx.destination)
       osc.start(now + offset)
-      osc.stop(now + offset + 0.15)
+      osc.stop(now + offset + 0.18)
     })
 
-    ;[0.28, 0.58, 0.92, 1.18].forEach((offset, index) => {
+    ;[0.24, 0.48, 0.72, 0.96, 1.2, 1.44].forEach((offset, index) => {
       const osc = ctx.createOscillator()
       const gain = ctx.createGain()
       osc.type = 'triangle'
       osc.frequency.setValueAtTime(index % 2 === 0 ? 1760 : 2093, now + offset)
       gain.gain.setValueAtTime(0.0001, now + offset)
-      gain.gain.linearRampToValueAtTime(0.12, now + offset + 0.01)
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + offset + 0.22)
+      gain.gain.linearRampToValueAtTime(0.145, now + offset + 0.01)
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + offset + 0.26)
       osc.connect(gain)
       gain.connect(ctx.destination)
       osc.start(now + offset)
-      osc.stop(now + offset + 0.24)
+      osc.stop(now + offset + 0.28)
     })
+
+    const whoosh = ctx.createOscillator()
+    const whooshGain = ctx.createGain()
+    whoosh.type = 'sawtooth'
+    whoosh.frequency.setValueAtTime(420, now)
+    whoosh.frequency.exponentialRampToValueAtTime(1380, now + 0.24)
+    whooshGain.gain.setValueAtTime(0.0001, now)
+    whooshGain.gain.linearRampToValueAtTime(0.09, now + 0.04)
+    whooshGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.42)
+    whoosh.connect(whooshGain)
+    whooshGain.connect(ctx.destination)
+    whoosh.start(now)
+    whoosh.stop(now + 0.44)
   }
 
   function triggerCelebration(stage) {
@@ -159,9 +172,21 @@ export default function PlayPage() {
 
   function addScore(field, label) {
     const points = Number(state[field]) || 0
-    const nextScore = state.score + points
-    const nextHistory = [`${label} +${points}`, ...state.history].slice(0, 16)
-    let nextMessage = `${label} 成功，團隊加 ${points} 分！`
+    const isRingAction = field === 'ringPoints'
+    const cap = isRingAction ? state.stage1Target : state.stage2Target
+
+    if (state.score >= cap) {
+      const lockedMessage = isRingAction
+        ? `套圈圈關已達 ${state.stage1Target} 分，請前往氣球關！`
+        : `總分已達 ${state.stage2Target} 分，準備開寶箱！`
+      setMessage(lockedMessage)
+      return
+    }
+
+    const nextScore = Math.min(cap, state.score + points)
+    const actualGain = nextScore - state.score
+    const nextHistory = [`${label} +${actualGain}`, ...state.history].slice(0, 16)
+    let nextMessage = `${label} 成功，團隊加 ${actualGain} 分！`
     let unlockedStage = null
 
     if (state.score < state.stage1Target && nextScore >= state.stage1Target) {
@@ -275,7 +300,7 @@ export default function PlayPage() {
                 className="btn actionButton actionButtonSecondary actionButtonHost"
                 onClick={subtractBalloon}
               >
-                <span className="actionEmoji">🎈</span>
+                <span className="actionEmoji">↩️</span>
                 <span>氣球不落地分數更正</span>
                 <span className="actionPoints">-5</span>
               </button>
@@ -365,6 +390,7 @@ function TreasureChest({ open = false, compact = false, giant = false, epic = fa
     <div className={`treasureChest ${open ? 'treasureChestOpen' : ''} ${compact ? 'treasureChestCompact' : ''} ${giant ? 'treasureChestGiant' : ''} ${epic ? 'treasureChestEpic' : ''}`}>
       <div className="treasureAura" />
       <div className="treasureGlow" />
+      <div className="treasureFlash" />
       <div className="treasureGem treasureGemLeft" />
       <div className="treasureGem treasureGemRight" />
       <div className="treasureGem treasureGemCenter" />
