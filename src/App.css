@@ -222,24 +222,17 @@
   background: linear-gradient(180deg, #ffeaa6 0%, #d3a225 100%); border: 2px solid rgba(111,67,18,0.65); z-index: 4;
 }
 .treasureStud1 { left: 14%; } .treasureStud2 { left: 32%; } .treasureStud3 { right: 32%; } .treasureStud4 { right: 14%; }
-.treasureLight {
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  bottom: 40%;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  opacity: 0;
-  pointer-events: none;
-
-  background: radial-gradient(circle, 
-    rgba(255,255,255,1),
-    rgba(255,215,0,0.9),
-    rgba(255,100,0,0.6),
-    transparent
-  );
-}
+.treasureLight { position: absolute; 
+                width: 24px; 
+                height: 94px; 
+                bottom: 48%; 
+                border-radius: 999px; 
+                background: radial-gradient(circle, 
+                rgba(255,255,255,1), 
+                rgba(255,215,0,0.9), 
+                rgba(255,100,0,0.6), 
+                transparent; 
+               }
 .treasureLight1 { left: 14%; transform: rotate(-22deg); }
 .treasureLight2 { left: 36%; transform: rotate(-8deg); }
 .treasureLight3 { left: 58%; transform: rotate(10deg); }
