@@ -236,30 +236,31 @@
 }
 .treasureStud1 { left: 14%; } .treasureStud2 { left: 32%; } .treasureStud3 { right: 32%; } .treasureStud4 { right: 14%; }
 .treasureLight {
-  --beam-from: -10deg;
-  --beam-to: 10deg;
+  --beam-from: -8deg;
+  --beam-to: 8deg;
   --beam-delay: 0s;
   position: absolute;
-  width: 32px;
-  height: 118px;
-  bottom: 50%;
+  width: 22px;
+  height: 84px;
+  bottom: 53%;
   left: 50%;
-  margin-left: -16px;
+  margin-left: -11px;
   border-radius: 999px;
   background: linear-gradient(180deg,
-    rgba(255,255,255,0.98) 0%,
-    rgba(255,246,190,0.98) 18%,
-    rgba(255,214,74,0.92) 46%,
-    rgba(255,140,0,0.44) 74%,
-    rgba(255,225,102,0) 100%);
+    rgba(255,255,255,0.96) 0%,
+    rgba(255,248,205,0.94) 24%,
+    rgba(255,224,120,0.58) 58%,
+    rgba(255,224,120,0.18) 82%,
+    rgba(255,224,120,0) 100%);
   opacity: 0;
   transform-origin: bottom center;
-  filter: blur(0.3px) drop-shadow(0 0 10px rgba(255,235,166,0.78));
+  mix-blend-mode: screen;
+  filter: blur(2.4px) drop-shadow(0 0 12px rgba(255,225,145,0.42));
 }
-.treasureLight1 { --beam-from: -36deg; --beam-to: -62deg; --beam-delay: 0s; }
-.treasureLight2 { --beam-from: -14deg; --beam-to: -24deg; --beam-delay: 0.08s; }
-.treasureLight3 { --beam-from: 14deg; --beam-to: 24deg; --beam-delay: 0.12s; }
-.treasureLight4 { --beam-from: 36deg; --beam-to: 62deg; --beam-delay: 0.04s; }
+.treasureLight1 { --beam-from: -18deg; --beam-to: -10deg; --beam-delay: 0s; }
+.treasureLight2 { --beam-from: -6deg; --beam-to: -2deg; --beam-delay: 0.08s; }
+.treasureLight3 { --beam-from: 6deg; --beam-to: 2deg; --beam-delay: 0.12s; }
+.treasureLight4 { --beam-from: 18deg; --beam-to: 10deg; --beam-delay: 0.04s; }
 .treasureRibbon {
   position: absolute;
   top: 38%;
@@ -280,7 +281,7 @@
 .treasureChestOpen .treasureFlash { opacity: 1; }
 .treasureChestOpen .treasureAura { animation: auraPulse 1.15s ease-in-out infinite alternate; }
 .treasureChestOpen .treasureFlash { animation: flashThenBurst 1.2s cubic-bezier(.18,.85,.22,1) both; }
-.treasureChestOpen .treasureLight { animation: lightScatter 1.15s cubic-bezier(.2,.85,.25,1) infinite; animation-delay: var(--beam-delay); }
+.treasureChestOpen .treasureLight { animation: lightGlow 1.55s ease-in-out infinite; animation-delay: var(--beam-delay); }
 .treasureChestOpen .treasureRibbon { animation: ribbonFlick 1s ease-in-out infinite alternate; }
 
 .celebrationOverlay {
@@ -325,11 +326,11 @@
   from { transform: scale(0.85); opacity: 0.72; }
   to { transform: scale(1.1); opacity: 1; }
 }
-@keyframes lightScatter {
-  0% { opacity: 0; transform: rotate(var(--beam-from)) translateY(10px) scaleY(0.22); }
-  18% { opacity: 1; transform: rotate(calc(var(--beam-from) * 0.9)) translateY(-4px) scaleY(0.96); }
-  58% { opacity: 1; transform: rotate(var(--beam-to)) translateY(-16px) scaleY(1.14); }
-  100% { opacity: 0; transform: rotate(calc(var(--beam-to) + 3deg)) translateY(-28px) scaleY(1.22); }
+@keyframes lightGlow {
+  0% { opacity: 0; transform: rotate(var(--beam-from)) translateY(8px) scaleY(0.45) scaleX(0.92); }
+  22% { opacity: 0.72; transform: rotate(calc((var(--beam-from) + var(--beam-to)) / 2)) translateY(-2px) scaleY(0.92) scaleX(1); }
+  58% { opacity: 0.92; transform: rotate(var(--beam-to)) translateY(-7px) scaleY(1.02) scaleX(1.04); }
+  100% { opacity: 0; transform: rotate(calc(var(--beam-to) * 0.9)) translateY(-11px) scaleY(0.78) scaleX(0.96); }
 }
 @keyframes flashThenBurst {
   0% { opacity: 0; transform: translateX(-50%) scale(0.08); }
