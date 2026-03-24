@@ -390,7 +390,6 @@ function TreasureChest({ open = false, compact = false, giant = false, epic = fa
     <div className={`treasureChest ${open ? 'treasureChestOpen' : ''} ${compact ? 'treasureChestCompact' : ''} ${giant ? 'treasureChestGiant' : ''} ${epic ? 'treasureChestEpic' : ''}`}>
       <div className="treasureAura" />
       <div className="treasureGlow" />
-      <div className="treasureFlash" />
       <div className="treasureGem treasureGemLeft" />
       <div className="treasureGem treasureGemRight" />
       <div className="treasureGem treasureGemCenter" />
