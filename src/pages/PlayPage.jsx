@@ -172,23 +172,75 @@ export default function PlayPage() {
     }, 3600)
   }
 
+  const playBeep = (type = 'ok') => {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext
+    if (!AudioCtx) return
+  
+    if (!audioRef.current || audioRef.current.state === 'closed') {
+      audioRef.current = new AudioCtx()
+    }
+  
+    const ctx = audioRef.current
+    if (ctx.state === 'suspended') ctx.resume()
+  
+    const now = ctx.currentTime
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
+  
+    if (type === 'error') {
+      osc.type = 'sawtooth'
+      osc.frequency.setValueAtTime(220, now)
+      osc.frequency.exponentialRampToValueAtTime(120, now + 0.2)
+    } else {
+      osc.type = 'triangle'
+      osc.frequency.setValueAtTime(880, now)
+      osc.frequency.exponentialRampToValueAtTime(1320, now + 0.2)
+    }
+  
+    gain.gain.setValueAtTime(0.0001, now)
+    gain.gain.linearRampToValueAtTime(0.15, now + 0.01)
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.25)
+  
+    osc.connect(gain)
+    gain.connect(ctx.destination)
+  
+    osc.start(now)
+    osc.stop(now + 0.25)
+  }
+  
   function addScore(points, label, type) {
+    // 🚫 防呆：50分前不能按氣球
+    if (type !== 'ring' && state.score < state.stage1Target) {
+      setMessage('套圈圈關還沒闖關成功喔，請前往套圈圈關')
+      playBeep('error')
+      return
+    }
+  
+    // 🚫 防呆：50分後不能再按套圈圈
+    if (type === 'ring' && state.score >= state.stage1Target) {
+      setMessage(`套圈圈關已達 ${state.stage1Target} 分，請前往氣球關`)
+      playBeep('error')
+      return
+    }
+  
     const cap = type === 'ring' ? state.stage1Target : state.stage2Target
-
+  
     if (state.score >= cap) {
       const lockedMessage = type === 'ring'
         ? `套圈圈關已達 ${state.stage1Target} 分，請前往氣球關！`
         : `總分已達 ${state.stage2Target} 分，準備開寶箱！`
       setMessage(lockedMessage)
+      playBeep('error')
       return
     }
-
+  
     const nextScore = Math.min(cap, state.score + points)
     const actualGain = nextScore - state.score
     const nextHistory = [`${label} +${actualGain}`, ...state.history].slice(0, 16)
+  
     let nextMessage = `${label} 成功，團隊加 ${actualGain} 分！`
     let unlockedStage = null
-
+  
     if (state.score < state.stage1Target && nextScore >= state.stage1Target) {
       nextMessage = '第一個寶箱出現了！快一起歡呼！'
       unlockedStage = 1
@@ -197,8 +249,10 @@ export default function PlayPage() {
       nextMessage = '第二個寶箱解鎖！準備迎接最終驚喜！'
       unlockedStage = 2
     }
-
+  
     update({ ...state, score: nextScore, history: nextHistory }, nextMessage)
+    playBeep('ok')
+  
     if (unlockedStage) triggerCelebration(unlockedStage)
   }
 
