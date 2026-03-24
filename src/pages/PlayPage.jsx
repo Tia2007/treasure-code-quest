@@ -51,50 +51,72 @@ export default function PlayPage() {
     if (ctx.state === 'suspended') ctx.resume().catch(() => {})
 
     const now = ctx.currentTime
-    const mainMelody = stage === 1
-      ? [659.25, 783.99, 1046.5, 1318.51, 1174.66, 1567.98]
-      : [523.25, 659.25, 783.99, 1046.5, 1318.51, 1567.98, 1760, 2093]
+    const melody = stage === 1
+      ? [659.25, 783.99, 1046.5, 1318.51, 1567.98, 1318.51, 1760]
+      : [523.25, 659.25, 783.99, 1046.5, 1318.51, 1567.98, 1760, 2093, 2349.32]
 
-    mainMelody.forEach((freq, index) => {
+    const chords = stage === 1
+      ? [[261.63, 329.63, 392], [293.66, 369.99, 440], [329.63, 415.3, 493.88], [392, 493.88, 587.33]]
+      : [[261.63, 329.63, 392], [329.63, 415.3, 493.88], [392, 493.88, 587.33], [523.25, 659.25, 783.99]]
+
+    melody.forEach((freq, index) => {
+      const start = now + index * 0.16
       const osc = ctx.createOscillator()
       const gain = ctx.createGain()
-      osc.type = index % 3 === 0 ? 'triangle' : index % 2 === 0 ? 'sawtooth' : 'square'
-      osc.frequency.setValueAtTime(freq, now + index * 0.09)
-      gain.gain.setValueAtTime(0.0001, now + index * 0.09)
-      gain.gain.exponentialRampToValueAtTime(0.24, now + index * 0.09 + 0.02)
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + index * 0.09 + 0.26)
+      osc.type = index % 2 === 0 ? 'triangle' : 'sawtooth'
+      osc.frequency.setValueAtTime(freq, start)
+      gain.gain.setValueAtTime(0.0001, start)
+      gain.gain.linearRampToValueAtTime(0.16, start + 0.02)
+      gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.28)
       osc.connect(gain)
       gain.connect(ctx.destination)
-      osc.start(now + index * 0.09)
-      osc.stop(now + index * 0.09 + 0.28)
+      osc.start(start)
+      osc.stop(start + 0.3)
     })
 
-    ;[0, 0.12, 0.24, 0.36, 0.48].forEach((offset, index) => {
+    chords.forEach((chord, chordIndex) => {
+      const start = now + chordIndex * 0.32
+      chord.forEach((freq, noteIndex) => {
+        const osc = ctx.createOscillator()
+        const gain = ctx.createGain()
+        osc.type = noteIndex === 1 ? 'square' : 'sine'
+        osc.frequency.setValueAtTime(freq, start)
+        gain.gain.setValueAtTime(0.0001, start)
+        gain.gain.linearRampToValueAtTime(0.06, start + 0.03)
+        gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.46)
+        osc.connect(gain)
+        gain.connect(ctx.destination)
+        osc.start(start)
+        osc.stop(start + 0.5)
+      })
+    })
+
+    ;[0, 0.18, 0.36, 0.54, 0.72, 0.9].forEach((offset, index) => {
       const osc = ctx.createOscillator()
       const gain = ctx.createGain()
       osc.type = 'square'
-      osc.frequency.setValueAtTime(index % 2 === 0 ? 120 : 96, now + offset)
+      osc.frequency.setValueAtTime(index % 2 === 0 ? 110 : 98, now + offset)
       gain.gain.setValueAtTime(0.0001, now + offset)
-      gain.gain.exponentialRampToValueAtTime(0.2, now + offset + 0.01)
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + offset + 0.11)
+      gain.gain.linearRampToValueAtTime(0.12, now + offset + 0.01)
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + offset + 0.14)
       osc.connect(gain)
       gain.connect(ctx.destination)
       osc.start(now + offset)
-      osc.stop(now + offset + 0.12)
+      osc.stop(now + offset + 0.15)
     })
 
-    ;[0.18, 0.42, 0.68].forEach((offset, index) => {
+    ;[0.28, 0.58, 0.92, 1.18].forEach((offset, index) => {
       const osc = ctx.createOscillator()
       const gain = ctx.createGain()
-      osc.type = 'sine'
-      osc.frequency.setValueAtTime(index === 2 ? 1760 : 1396.91, now + offset)
+      osc.type = 'triangle'
+      osc.frequency.setValueAtTime(index % 2 === 0 ? 1760 : 2093, now + offset)
       gain.gain.setValueAtTime(0.0001, now + offset)
-      gain.gain.exponentialRampToValueAtTime(0.16, now + offset + 0.01)
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + offset + 0.16)
+      gain.gain.linearRampToValueAtTime(0.12, now + offset + 0.01)
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + offset + 0.22)
       osc.connect(gain)
       gain.connect(ctx.destination)
       osc.start(now + offset)
-      osc.stop(now + offset + 0.18)
+      osc.stop(now + offset + 0.24)
     })
   }
 
@@ -160,6 +182,13 @@ export default function PlayPage() {
     const nextScore = Math.max(0, state.score - points)
     const nextHistory = [`套圈圈更正 -${points}`, ...state.history].slice(0, 16)
     update({ ...state, score: nextScore, history: nextHistory }, `已更正套圈圈分數 -${points} 分。`)
+  }
+
+  function subtractBalloon() {
+    const points = 5
+    const nextScore = Math.max(0, state.score - points)
+    const nextHistory = [`氣球不落地更正 -${points}`, ...state.history].slice(0, 16)
+    update({ ...state, score: nextScore, history: nextHistory }, `已更正氣球不落地分數 -${points} 分。`)
   }
 
   function resetProgress() {
@@ -240,6 +269,15 @@ export default function PlayPage() {
                 <span className="actionEmoji">↩️</span>
                 <span>套圈圈分數更正</span>
                 <span className="actionPoints">-{state.ringPoints}</span>
+              </button>
+              <button
+                type="button"
+                className="btn actionButton actionButtonSecondary actionButtonHost"
+                onClick={subtractBalloon}
+              >
+                <span className="actionEmoji">🎈</span>
+                <span>氣球不落地分數更正</span>
+                <span className="actionPoints">-5</span>
               </button>
             </div>
           </section>
