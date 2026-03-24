@@ -95,7 +95,7 @@
 .energyWrapHorizontal { padding: 8px 2px 30px; }
 .energyWrapHost { padding-bottom: 32px; }
 .energyBarSceneHorizontal { position: relative; width: min(100%, 520px); padding-top: 92px; }
-.energyBarSceneHost { width: min(100%, 760px); }
+.energyBarSceneHost { width: min(100%, 740px); }
 .energyBarTrackHorizontal {
   position: relative; height: 54px; width: 100%; border-radius: 999px;
   border: 4px solid rgba(255,255,255,0.92);
@@ -117,19 +117,19 @@
 }
 .energyBarFillHost { box-shadow: inset -18px 0 24px rgba(255,132,64,0.24), 0 0 42px rgba(255,180,76,0.55); }
 .energyMarkerHorizontal {
-  position: absolute; top: -86px; width: 140px; display: grid; gap: 6px; justify-items: center;
+  position: absolute; top: -78px; width: 118px; display: grid; gap: 6px; justify-items: center;
 }
-.energyMarkerHost { top: -92px; }
-.markerLabel { font-size: 16px; font-weight: 900; color: #51307c; }
+.energyMarkerHost { top: -84px; }
+.markerLabel { font-size: 15px; font-weight: 900; color: #51307c; }
 .markerLabelTop { margin-bottom: 2px; }
-.markerHint { font-size: 12px; opacity: 0.76; font-weight: 700; }
+.markerHint { font-size: 11px; opacity: 0.76; font-weight: 700; }
 .markerChest {
   display: inline-flex; align-items: center; justify-content: center;
-  min-width: 110px; min-height: 84px; padding: 6px; border-radius: 20px;
+  min-width: 94px; min-height: 72px; padding: 4px; border-radius: 18px;
   background: rgba(255,255,255,0.5); box-shadow: 0 10px 24px rgba(83,56,131,0.12);
 }
 .markerChestFancy { background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,243,213,0.88)); }
-.markerChestHost { min-width: 124px; min-height: 94px; }
+.markerChestHost { min-width: 104px; min-height: 78px; }
 .markerChestOpen { background: linear-gradient(135deg, rgba(255,244,175,0.96), rgba(255,255,255,0.95)); box-shadow: 0 12px 28px rgba(255,212,91,0.28); }
 .messageCard {
   width: 100%; margin-top: 8px; padding: 14px 16px; border-radius: 18px;
@@ -160,8 +160,8 @@
   position: relative; width: 150px; height: 118px;
   filter: drop-shadow(0 18px 24px rgba(99,61,19,0.32)); transform-origin: center bottom;
 }
-.treasureChestCompact { width: 110px; height: 86px; }
-.treasureChestGiant { width: 260px; height: 205px; animation: chestBurst 0.8s cubic-bezier(.18,1.18,.3,1) both; }
+.treasureChestCompact { width: 88px; height: 68px; }
+.treasureChestGiant { width: 248px; height: 196px; animation: chestBurst 0.8s cubic-bezier(.18,1.18,.3,1) both; }
 .treasureChestEpic { filter: drop-shadow(0 24px 28px rgba(255,185,61,0.34)) drop-shadow(0 0 24px rgba(255,234,152,0.35)); }
 .treasureAura {
   position: absolute; inset: -38px; border-radius: 999px;
@@ -236,7 +236,7 @@
 }
 .treasureRibbonLeft { left: -2%; transform: rotate(-28deg); }
 .treasureRibbonRight { right: -2%; transform: rotate(28deg); }
-.treasureChestOpen .treasureLid { transform: translateX(-50%) rotate(-46deg) translateY(-24px); }
+.treasureChestOpen .treasureLid { transform: translateX(-50%) rotate(-54deg) translateY(-28px); }
 .treasureChestOpen .treasureGlow,
 .treasureChestOpen .treasureLight,
 .treasureChestOpen .treasureAura,
@@ -251,13 +251,13 @@
   backdrop-filter: blur(8px);
 }
 .celebrationGlow {
-  position: absolute; inset: 12% 14%; border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,238,164,0.86) 0%, rgba(255,201,80,0.36) 28%, rgba(255,255,255,0) 68%);
-  animation: overlayPulse 1s ease-in-out infinite alternate;
+  position: absolute; inset: 8% 10%; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,242,190,0.95) 0%, rgba(255,205,84,0.5) 26%, rgba(255,255,255,0) 72%);
+  animation: overlayPulse 0.9s ease-in-out infinite alternate;
 }
 .celebrationBurst {
-  position: absolute; top: 50%; width: 26vw; max-width: 320px; height: 26vw; max-height: 320px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.82) 0%, rgba(255,213,105,0.24) 35%, rgba(255,255,255,0) 72%);
+  position: absolute; top: 50%; width: 30vw; max-width: 360px; height: 30vw; max-height: 360px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,218,120,0.36) 32%, rgba(255,255,255,0) 74%);
   filter: blur(8px); opacity: 0.8;
 }
 .celebrationBurstLeft { left: 6%; }
