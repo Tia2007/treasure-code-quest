@@ -133,7 +133,7 @@
 .markerChestOpen { background: linear-gradient(135deg, rgba(255,244,175,0.96), rgba(255,255,255,0.95)); box-shadow: 0 12px 28px rgba(255,212,91,0.28); }
 .messageCard {
   width: 100%; margin-top: 8px; padding: 14px 16px; border-radius: 18px;
-  background: linear-gradient(135deg, rgba(255,248,212,0.96), rgba(255,255,255,0.95));
+  background: linear-gradient(135deg, rgba(57,40,10,0.94), rgba(28,24,9,0.92));
   box-shadow: inset 0 0 0 1px rgba(255,222,125,0.55); font-weight: 800;
 }
 .messageCardHost { font-size: 18px; min-height: 72px; display: flex; align-items: center; justify-content: center; }
@@ -144,12 +144,12 @@
   grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; text-align: left; font-weight: 800;
 }
 .actionButtonHost { min-height: 82px; font-size: 20px; }
-.actionButtonSecondary { background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(242,235,255,0.95)); }
+.actionButtonSecondary { background: linear-gradient(135deg, rgba(32,37,52,0.96), rgba(23,28,44,0.95)); }
 .actionEmoji { font-size: 26px; }
 .actionPoints { font-size: 28px; font-weight: 900; }
 .notesBox {
   margin: 0; white-space: pre-wrap; font-family: inherit; line-height: 1.6;
-  background: #fffaf0; padding: 12px; border-radius: 16px;
+  background: rgba(67,49,7,0.92); color: #f6f0d0; padding: 12px; border-radius: 16px;
 }
 .notesBoxCompact { font-size: 15px; flex: 1; overflow: auto; }
 .historyCompactList { display: grid; gap: 8px; overflow: auto; min-height: 0; }
@@ -205,23 +205,28 @@
   border: 4px solid #986b00; border-bottom: 0; border-radius: 14px 14px 0 0;
 }
 .treasureGlow {
-  position: absolute; inset: -14px; border-radius: 34px;
-  background: radial-gradient(circle, rgba(255,237,140,0.82) 0%, rgba(255,224,90,0.24) 44%, rgba(255,255,255,0) 74%);
-  opacity: 0; transition: opacity 350ms ease;
-}
-.treasureFlash {
   position: absolute;
   left: 50%;
-  bottom: 42%;
-  width: 172px;
-  height: 172px;
-  transform: translateX(-50%) scale(0.2);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,246,190,0.98) 16%, rgba(255,215,0,0.92) 34%, rgba(255,138,0,0.62) 54%, rgba(255,255,255,0) 78%);
+  bottom: 48%;
+  width: 132px;
+  height: 88px;
+  margin-left: -66px;
+  border-radius: 999px 999px 0 0;
+  background: radial-gradient(ellipse at center bottom,
+    rgba(255,255,255,0.22) 0%,
+    rgba(255,244,204,0.18) 18%,
+    rgba(255,224,140,0.14) 36%,
+    rgba(255,210,110,0.08) 54%,
+    rgba(255,206,106,0.03) 70%,
+    rgba(255,206,106,0) 100%);
   opacity: 0;
+  transform: translateY(6px) scale(0.9);
+  filter: blur(8px);
   mix-blend-mode: screen;
-  filter: blur(2px) drop-shadow(0 0 28px rgba(255,225,122,0.78));
+  pointer-events: none;
+  z-index: 0;
 }
+.treasureFlash { display: none; }
 .treasureGem {
   position: absolute; top: 34%; width: 14px; height: 14px; transform: rotate(45deg);
   background: linear-gradient(180deg, #8df0ff 0%, #337bff 100%); border: 2px solid rgba(255,255,255,0.7);
@@ -236,45 +241,33 @@
 }
 .treasureStud1 { left: 14%; } .treasureStud2 { left: 32%; } .treasureStud3 { right: 32%; } .treasureStud4 { right: 14%; }
 .treasureLight {
-  --beam-from: -1deg;
-  --beam-to: 1deg;
   --beam-delay: 0s;
   position: absolute;
-  width: 128px;
-  height: 68px;
-  bottom: 54%;
   left: 50%;
-  margin-left: -64px;
+  bottom: 50%;
+  width: 138px;
+  height: 92px;
+  margin-left: -69px;
   border-radius: 999px 999px 0 0;
   background: radial-gradient(ellipse at center bottom,
-    rgba(255,255,255,0.42) 0%,
-    rgba(255,246,210,0.28) 28%,
-    rgba(255,221,128,0.18) 52%,
-    rgba(255,205,102,0.08) 68%,
-    rgba(255,205,102,0.03) 80%,
-    rgba(255,205,102,0) 100%);
+    rgba(255,255,255,0.18) 0%,
+    rgba(255,244,205,0.13) 24%,
+    rgba(255,229,156,0.10) 42%,
+    rgba(255,214,120,0.05) 60%,
+    rgba(255,214,120,0.02) 76%,
+    rgba(255,214,120,0) 100%);
   opacity: 0;
-  transform-origin: center bottom;
-  transform: translateY(6px) scale(0.92);
+  transform: translateY(8px) scale(0.9);
+  filter: blur(5px);
   mix-blend-mode: screen;
-  filter: blur(3.8px) drop-shadow(0 0 10px rgba(255,226,150,0.16));
   pointer-events: none;
   z-index: 0;
 }
-.treasureLight1 { --beam-from: -18deg; --beam-to: -10deg; --beam-delay: 0s; }
-.treasureLight2 { --beam-from: -6deg; --beam-to: -2deg; --beam-delay: 0.08s; }
-.treasureLight3 { --beam-from: 6deg; --beam-to: 2deg; --beam-delay: 0.12s; }
-.treasureLight4 { --beam-from: 18deg; --beam-to: 10deg; --beam-delay: 0.04s; }
-.treasureRibbon {
-  position: absolute;
-  top: 38%;
-  width: 18px;
-  height: 104px;
-  border-radius: 999px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,122,184,0.06), rgba(255,122,184,0));
-  opacity: 0;
-  filter: drop-shadow(0 0 10px rgba(255,255,255,0.55));
-}
+.treasureLight1 { --beam-delay: 0s; }
+.treasureLight2 { --beam-delay: 0.08s; }
+.treasureLight3 { --beam-delay: 0.16s; }
+.treasureLight4 { --beam-delay: 0.24s; }
+.treasureRibbon { display: none; }
 .treasureRibbonLeft { display: none; }
 .treasureRibbonRight { display: none; }
 .treasureChestOpen .treasureLid { transform: translateX(-50%) rotate(-54deg) translateY(-28px); }
@@ -282,17 +275,7 @@
 .treasureChestOpen .treasureLight,
 .treasureChestOpen .treasureAura,
 .treasureChestOpen .treasureRibbon,
-.treasureChestOpen .treasureFlash { opacity: 1; }
-.treasureChestOpen .treasureAura { animation: auraPulse 1.15s ease-in-out infinite alternate; }
-.treasureChestOpen .treasureFlash { animation: flashThenBurst 1.2s cubic-bezier(.18,.85,.22,1) both; }
-.treasureChestOpen .treasureLight { animation: lightGlowSoft 1.8s ease-in-out infinite; animation-delay: var(--beam-delay); }
-.treasureChestOpen .treasureRibbon { animation: ribbonFlick 1s ease-in-out infinite alternate; }
-
-.celebrationOverlay {
-  position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; overflow: hidden;
-  background: radial-gradient(circle at center, rgba(64,24,122,0.28), rgba(15,10,37,0.74));
-  backdrop-filter: blur(8px);
-}
+.treasureChestOpen .treasureFlash { display: none; }
 .celebrationGlow {
   position: absolute; inset: 8% 10%; border-radius: 50%;
   background: radial-gradient(circle, rgba(255,242,190,0.95) 0%, rgba(255,205,84,0.5) 26%, rgba(255,255,255,0) 72%);
@@ -322,12 +305,22 @@
 }
 
 @keyframes chestBurst {
-  0% { transform: scale(0.55) translateY(30px); opacity: 0; }
+  0% { transform: scale(0.62) translateY(28px) rotate(0deg); opacity: 0; }
+  16% { transform: scale(0.86) translateY(12px) rotate(-2.2deg); opacity: 1; }
+  26% { transform: scale(0.92) translateY(6px) rotate(2deg); }
+  36% { transform: scale(0.98) translateY(0) rotate(-1.5deg); }
+  48% { transform: scale(1.02) translateY(-3px) rotate(1.2deg); }
+  62% { transform: scale(1.05) translateY(-7px) rotate(-0.8deg); }
+  78% { transform: scale(1.02) translateY(-4px) rotate(0.4deg); }
+  100% { transform: scale(1) translateY(0) rotate(0deg); opacity: 1; }
+}
   70% { transform: scale(1.08) translateY(-10px); opacity: 1; }
   100% { transform: scale(1) translateY(0); opacity: 1; }
 }
 @keyframes auraPulse {
-  from { transform: scale(0.85); opacity: 0.72; }
+  from { transform: scale(0.9); opacity: 0.42; }
+  to { transform: scale(1.02); opacity: 0.68; }
+}
   to { transform: scale(1.1); opacity: 1; }
 }
 @keyframes lightGlow {
@@ -337,7 +330,11 @@
   100% { opacity: 0.6; transform: scale(0.98) rotate(0deg); filter: blur(2px) drop-shadow(0 0 14px rgba(255,223,145,0.28)); }
 }
 @keyframes lightGlowSoft {
-  0% { opacity: 0; transform: translateY(8px) scale(0.88); filter: blur(4.4px) drop-shadow(0 0 6px rgba(255,223,145,0.08)); }
+  0% { opacity: 0; transform: translateY(9px) scale(0.9); filter: blur(6px); }
+  24% { opacity: 0.16; transform: translateY(6px) scale(0.95); filter: blur(5.4px); }
+  58% { opacity: 0.26; transform: translateY(2px) scale(1); filter: blur(5px); }
+  100% { opacity: 0.18; transform: translateY(4px) scale(0.97); filter: blur(5.6px); }
+}
   25% { opacity: 0.28; transform: translateY(4px) scale(0.94); filter: blur(4px) drop-shadow(0 0 9px rgba(255,223,145,0.12)); }
   60% { opacity: 0.42; transform: translateY(0) scale(1); filter: blur(3.8px) drop-shadow(0 0 12px rgba(255,223,145,0.16)); }
   100% { opacity: 0.3; transform: translateY(3px) scale(0.97); filter: blur(4.2px) drop-shadow(0 0 8px rgba(255,223,145,0.1)); }
@@ -346,6 +343,14 @@
   from { opacity: 0.34; transform: translateY(16px) rotate(-16deg) scaleY(0.84); }
   to { opacity: 0.98; transform: translateY(-20px) rotate(-38deg) scaleY(1.08); }
 }
+
+@keyframes glowBloom {
+  0% { opacity: 0; transform: translateY(10px) scale(0.78); filter: blur(10px); }
+  35% { opacity: 0.18; transform: translateY(5px) scale(0.92); filter: blur(9px); }
+  70% { opacity: 0.28; transform: translateY(0) scale(1); filter: blur(8px); }
+  100% { opacity: 0.22; transform: translateY(2px) scale(0.98); filter: blur(9px); }
+}
+
 @keyframes overlayPulse {
   from { transform: scale(0.96); opacity: 0.72; }
   to { transform: scale(1.04); opacity: 1; }
