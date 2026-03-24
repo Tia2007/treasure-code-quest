@@ -39,7 +39,7 @@ export default function PlayPage() {
     setMessage(nextMessage)
   }
 
-  function playCelebrationMusic() {
+  function playCelebrationMusic(stage) {
     const AudioCtx = window.AudioContext || window.webkitAudioContext
     if (!AudioCtx) return
 
@@ -50,68 +50,86 @@ export default function PlayPage() {
     const ctx = audioRef.current
     if (ctx.state === 'suspended') ctx.resume().catch(() => {})
 
-    const notes = [523.25, 659.25, 783.99, 1046.5]
     const now = ctx.currentTime
+    const melody = stage === 1
+      ? [523.25, 659.25, 783.99, 1046.5, 880]
+      : [523.25, 659.25, 783.99, 1046.5, 1318.51, 1567.98]
 
-    notes.forEach((freq, index) => {
+    melody.forEach((freq, index) => {
       const osc = ctx.createOscillator()
       const gain = ctx.createGain()
-      osc.type = 'triangle'
-      osc.frequency.value = freq
-      gain.gain.setValueAtTime(0.0001, now)
-      gain.gain.exponentialRampToValueAtTime(0.18, now + index * 0.12 + 0.02)
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + index * 0.12 + 0.22)
+      osc.type = index % 2 === 0 ? 'triangle' : 'sawtooth'
+      osc.frequency.setValueAtTime(freq, now + index * 0.11)
+      gain.gain.setValueAtTime(0.0001, now + index * 0.11)
+      gain.gain.exponentialRampToValueAtTime(0.22, now + index * 0.11 + 0.02)
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + index * 0.11 + 0.28)
       osc.connect(gain)
       gain.connect(ctx.destination)
-      osc.start(now + index * 0.12)
-      osc.stop(now + index * 0.12 + 0.24)
+      osc.start(now + index * 0.11)
+      osc.stop(now + index * 0.11 + 0.3)
+    })
+
+    ;[0, 0.22, 0.44].forEach((offset) => {
+      const osc = ctx.createOscillator()
+      const gain = ctx.createGain()
+      osc.type = 'square'
+      osc.frequency.setValueAtTime(90, now + offset)
+      gain.gain.setValueAtTime(0.0001, now + offset)
+      gain.gain.exponentialRampToValueAtTime(0.17, now + offset + 0.01)
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + offset + 0.12)
+      osc.connect(gain)
+      gain.connect(ctx.destination)
+      osc.start(now + offset)
+      osc.stop(now + offset + 0.14)
     })
   }
 
   function triggerCelebration(stage) {
-    const sparkleList = Array.from({ length: 14 }, (_, index) => ({
+    const sparkleList = Array.from({ length: 22 }, (_, index) => ({
       id: `${stage}-${Date.now()}-${index}`,
       left: Math.random() * 90 + 5,
-      delay: Math.random() * 0.4,
-      duration: 1.2 + Math.random() * 0.8,
-      rotate: -30 + Math.random() * 60,
-      size: 8 + Math.random() * 14,
+      delay: Math.random() * 0.5,
+      duration: 1.4 + Math.random() * 0.9,
+      rotate: -40 + Math.random() * 80,
+      size: 8 + Math.random() * 16,
+      hue: ['#ffd700', '#fff2a8', '#ff7fd1', '#8b5cf6', '#7ce7ff'][index % 5],
     }))
     setSparkles(sparkleList)
     setCelebrationStage(stage)
-    playCelebrationMusic()
+    playCelebrationMusic(stage)
 
     confetti({
-      particleCount: 140,
+      particleCount: 180,
       spread: 120,
-      startVelocity: 45,
+      startVelocity: 50,
+      gravity: 0.8,
       origin: { x: 0.5, y: 0.62 },
-      colors: ['#ffd700', '#ffef8a', '#ffffff', '#ff7fd1', '#8b5cf6'],
-      scalar: 1.15,
+      colors: ['#ffd700', '#ffef8a', '#ffffff', '#ff7fd1', '#8b5cf6', '#7ce7ff'],
+      scalar: 1.2,
     })
 
     window.setTimeout(() => {
       confetti({
-        particleCount: 90,
+        particleCount: 120,
         spread: 90,
-        startVelocity: 35,
-        origin: { x: 0.2, y: 0.55 },
+        startVelocity: 38,
+        origin: { x: 0.22, y: 0.56 },
         colors: ['#ffd700', '#ffffff', '#ff7fd1'],
       })
       confetti({
-        particleCount: 90,
+        particleCount: 120,
         spread: 90,
-        startVelocity: 35,
-        origin: { x: 0.8, y: 0.55 },
+        startVelocity: 38,
+        origin: { x: 0.78, y: 0.56 },
         colors: ['#ffd700', '#ffffff', '#8b5cf6'],
       })
-    }, 220)
+    }, 260)
 
     if (timerRef.current) window.clearTimeout(timerRef.current)
     timerRef.current = window.setTimeout(() => {
       setCelebrationStage(null)
       setSparkles([])
-    }, 2800)
+    }, 3200)
   }
 
   function addScore(field, label) {
@@ -167,15 +185,15 @@ export default function PlayPage() {
 
   return (
     <>
-      <div className="playLayout">
-        <section className="panel energyPanel">
+      <div className="playLayout playLayoutWide">
+        <section className="panel energyPanel energyPanelHorizontal">
           <div className="pill" style={{ marginBottom: 10 }}>家庭合作闖關模式</div>
           <h1 style={{ margin: 0 }}>{state.eventTitle}</h1>
           <p style={{ opacity: 0.82, marginTop: 8 }}>{state.eventSubtitle}</p>
 
           <div className="scoreBadge">{state.score} 分</div>
-          <div className="energyWrap">
-            <VerticalEnergyBar
+          <div className="energyWrap energyWrapHorizontal">
+            <HorizontalEnergyBar
               score={state.score}
               totalPercent={totalPercent}
               stage1Target={state.stage1Target}
@@ -253,6 +271,7 @@ export default function PlayPage() {
                 transform: `rotate(${sparkle.rotate}deg)`,
                 width: `${sparkle.size}px`,
                 height: `${sparkle.size * 2.4}px`,
+                background: `linear-gradient(180deg, #fffef9 0%, ${sparkle.hue} 100%)`,
               }}
             />
           ))}
@@ -260,7 +279,7 @@ export default function PlayPage() {
             <div className="celebrationTitle">
               {celebrationStage === 1 ? '第一寶箱解鎖！' : '第二寶箱解鎖！'}
             </div>
-            <TreasureChest open />
+            <TreasureChest open giant />
             <div className="celebrationSub">金光閃閃！一起來打開寶箱吧！</div>
           </div>
         </div>
@@ -269,23 +288,24 @@ export default function PlayPage() {
   )
 }
 
-function VerticalEnergyBar({ score, totalPercent, stage1Target, stage2Target, stage1Open, stage2Open }) {
+function HorizontalEnergyBar({ score, totalPercent, stage1Target, stage2Target, stage1Open, stage2Open }) {
   return (
-    <div className="energyBarScene">
-      <div className="energyBarTrack">
-        <div className="energyBarFill" style={{ height: `${totalPercent}%` }} />
-        <EnergyMarker target={stage2Target} stageLabel="100" opened={stage2Open} percent={100} />
-        <EnergyMarker target={stage1Target} stageLabel="50" opened={stage1Open} percent={(stage1Target / stage2Target) * 100} />
+    <div className="energyBarSceneHorizontal">
+      <div className="energyBarTrackHorizontal">
+        <div className="energyBarFillHorizontal" style={{ width: `${totalPercent}%` }} />
+        <EnergyChestMarker target={stage1Target} stageLabel="50" opened={stage1Open} percent={(stage1Target / stage2Target) * 100} />
+        <EnergyChestMarker target={stage2Target} stageLabel="100" opened={stage2Open} percent={100} />
       </div>
     </div>
   )
 }
 
-function EnergyMarker({ target, stageLabel, opened, percent }) {
+function EnergyChestMarker({ target, stageLabel, opened, percent }) {
+  const clampedLeft = percent === 100 ? 'calc(100% - 52px)' : `calc(${percent}% - 52px)`
   return (
-    <div className="energyMarker" style={{ bottom: `calc(${percent}% - 34px)` }}>
-      <div className="markerLabel">{stageLabel} 分</div>
-      <div className={`markerChest ${opened ? 'markerChestOpen' : ''}`}>
+    <div className="energyMarkerHorizontal" style={{ left: clampedLeft }}>
+      <div className="markerLabel markerLabelTop">{stageLabel} 分</div>
+      <div className={`markerChest markerChestFancy ${opened ? 'markerChestOpen' : ''}`}>
         <TreasureChest open={opened} compact />
       </div>
       <div className="markerHint">{opened ? '已解鎖' : `目標 ${target}`}</div>
@@ -293,16 +313,30 @@ function EnergyMarker({ target, stageLabel, opened, percent }) {
   )
 }
 
-function TreasureChest({ open = false, compact = false }) {
+function TreasureChest({ open = false, compact = false, giant = false }) {
   return (
-    <div className={`treasureChest ${open ? 'treasureChestOpen' : ''} ${compact ? 'treasureChestCompact' : ''}`}>
+    <div className={`treasureChest ${open ? 'treasureChestOpen' : ''} ${compact ? 'treasureChestCompact' : ''} ${giant ? 'treasureChestGiant' : ''}`}>
+      <div className="treasureAura" />
       <div className="treasureGlow" />
-      <div className="treasureLid" />
-      <div className="treasureBase" />
+      <div className="treasureGem treasureGemLeft" />
+      <div className="treasureGem treasureGemRight" />
+      <div className="treasureLid">
+        <div className="treasureBand treasureBandTop" />
+        <div className="treasureRim" />
+      </div>
+      <div className="treasureBase">
+        <div className="treasureBand treasureBandMid" />
+        <div className="treasureBand treasureBandBottom" />
+      </div>
       <div className="treasureLock" />
+      <div className="treasureStud treasureStud1" />
+      <div className="treasureStud treasureStud2" />
+      <div className="treasureStud treasureStud3" />
+      <div className="treasureStud treasureStud4" />
       <div className="treasureLight treasureLight1" />
       <div className="treasureLight treasureLight2" />
       <div className="treasureLight treasureLight3" />
+      <div className="treasureLight treasureLight4" />
     </div>
   )
 }
