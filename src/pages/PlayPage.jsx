@@ -188,9 +188,9 @@ export default function PlayPage() {
     const gain = ctx.createGain()
   
     if (type === 'error') {
-      osc.type = 'sawtooth'
-      osc.frequency.setValueAtTime(220, now)
-      osc.frequency.exponentialRampToValueAtTime(120, now + 0.2)
+      osc.type = 'sine'
+      osc.frequency.setValueAtTime(440, now)
+      osc.frequency.exponentialRampToValueAtTime(220, now + 0.25)
     } else {
       osc.type = 'triangle'
       osc.frequency.setValueAtTime(880, now)
