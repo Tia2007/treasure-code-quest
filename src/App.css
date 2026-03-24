@@ -72,7 +72,7 @@
 .playLayout { display: grid; grid-template-columns: 1fr; gap: 12px; }
 .playLayoutWide { align-items: stretch; }
 .playLayoutHost {
-  grid-template-columns: minmax(420px, 44%) minmax(520px, 56%);
+  grid-template-columns: minmax(420px, 46%) minmax(520px, 54%);
   min-height: calc(100vh - 128px);
 }
 .rightStageColumn { display: grid; grid-template-rows: auto 1fr; gap: 12px; min-height: 0; }
