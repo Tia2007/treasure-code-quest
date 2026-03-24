@@ -1,0 +1,170 @@
+.appShell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.topBar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 14px 12px;
+  margin: 10px auto 0;
+  width: min(980px, calc(100% - 16px));
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  backdrop-filter: blur(8px);
+}
+
+.brandTitle {
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.brandSubtitle {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+}
+
+.navLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 86px;
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--card-strong);
+}
+
+.navLinkActive {
+  outline: 3px solid rgba(107, 92, 255, 0.35);
+}
+
+.main {
+  width: min(980px, calc(100% - 16px));
+  margin: 10px auto 22px;
+}
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 14px;
+  backdrop-filter: blur(8px);
+}
+
+.panelTitle {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.fieldLabel {
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.input {
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid var(--border-strong);
+  background: rgba(255, 255, 255, 0.92);
+  padding: 0 12px;
+  font-size: 18px;
+  width: 100%;
+}
+
+.textarea {
+  min-height: 96px;
+  border-radius: 14px;
+  border: 1px solid var(--border-strong);
+  background: rgba(255, 255, 255, 0.92);
+  padding: 10px 12px;
+  font-size: 16px;
+  width: 100%;
+}
+
+.btn {
+  height: 48px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--card-strong);
+  padding: 0 16px;
+  font-size: 18px;
+}
+
+.btnPrimary {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+  color: white;
+  border: none;
+}
+
+.btnDanger {
+  background: linear-gradient(135deg, var(--bad) 0%, var(--accent2) 100%);
+  color: white;
+  border: none;
+}
+
+.btnGood {
+  background: linear-gradient(135deg, #1fcf6a 0%, #25b8ff 100%);
+  color: white;
+  border: none;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card-strong);
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.adminTopRow {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.adminTopRowInner {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (min-width: 780px) {
+  .grid2 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .adminTopRowInner {
+    width: calc((100% - 10px) / 2);
+  }
+}
