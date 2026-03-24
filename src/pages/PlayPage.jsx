@@ -355,7 +355,7 @@ export default function PlayPage() {
                 onClick={subtractBalloon}
               >
                 <span className="actionEmoji">↩️</span>
-                <span>氣球不落地分數更正</span>
+                <span>氣球分數更正</span>
                 <span className="actionPoints">-5</span>
               </button>
             </div>
