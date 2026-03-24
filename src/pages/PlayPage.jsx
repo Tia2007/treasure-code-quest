@@ -4,10 +4,10 @@ import { createFreshState, loadState, saveState } from '../lib/storage.js'
 
 const ACTIONS = [
   { key: 'ring1', label: '套圈圈 1 次', points: 3, emoji: '⭕' },
-  { key: 'ring2', label: '套圈圈 2 次', points: 6, emoji: '⭕⭕' },
-  { key: 'ring3', label: '套圈圈 3 次', points: 9, emoji: '⭕⭕⭕' },
   { key: 'balloon1', label: '氣球 1 顆', points: 10, emoji: '🎈' },
+  { key: 'ring2', label: '套圈圈 2 次', points: 6, emoji: '⭕⭕' },
   { key: 'balloon3', label: '氣球 3 顆', points: 15, emoji: '🎈🎈🎈' },
+  { key: 'ring3', label: '套圈圈 3 次', points: 9, emoji: '⭕⭕⭕' },
   { key: 'balloon4', label: '氣球 4 顆', points: 25, emoji: '🎈🎈🎈🎈' },
 ]
 
