@@ -352,7 +352,7 @@ export default function PlayPage() {
             <div className="celebrationTitle">{celebrationStage === 1 ? '第一寶箱解鎖！' : '第二寶箱解鎖！'}</div>
             <div className="celebrationSub celebrationSubTop">快看！寶箱放大登場！</div>
             <TreasureChest open giant epic />
-            <div className="celebrationSub">金光、彩帶、歡呼聲一起登場！</div>
+            <div className="celebrationSub">寶箱打開啦！一起歡呼吧！</div>
           </div>
         </div>
       ) : null}
@@ -411,8 +411,6 @@ function TreasureChest({ open = false, compact = false, giant = false, epic = fa
       <div className="treasureLight treasureLight2" />
       <div className="treasureLight treasureLight3" />
       <div className="treasureLight treasureLight4" />
-      <div className="treasureRibbon treasureRibbonLeft" />
-      <div className="treasureRibbon treasureRibbonRight" />
     </div>
   )
 }
