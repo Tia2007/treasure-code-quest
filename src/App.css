@@ -11,7 +11,7 @@
   gap: 12px;
   padding: 16px 14px 12px;
   margin: 10px auto 0;
-  width: min(980px, calc(100% - 16px));
+  width: min(1180px, calc(100% - 16px));
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 18px;
@@ -50,7 +50,7 @@
 }
 
 .main {
-  width: min(980px, calc(100% - 16px));
+  width: min(1180px, calc(100% - 16px));
   margin: 10px auto 22px;
 }
 
@@ -134,8 +134,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
-  padding: 0 12px;
+  min-height: 40px;
+  padding: 8px 12px;
   border-radius: 999px;
   border: 1px solid var(--border);
   background: var(--card-strong);
@@ -157,6 +157,396 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
+}
+
+.playLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.energyPanel {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  text-align: center;
+}
+
+.scoreBadge {
+  margin: 10px 0 12px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-size: 34px;
+  font-weight: 800;
+  color: #44206f;
+  background: linear-gradient(135deg, #fff3a1 0%, #ffe27a 100%);
+  box-shadow: 0 10px 25px rgba(255, 194, 33, 0.35);
+}
+
+.energyWrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.energyBarScene {
+  position: relative;
+  height: 540px;
+  width: 230px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 18px 0;
+}
+
+.energyBarTrack {
+  position: relative;
+  width: 80px;
+  height: 100%;
+  border-radius: 999px;
+  border: 4px solid rgba(255, 255, 255, 0.9);
+  background: linear-gradient(180deg, rgba(250, 245, 255, 0.95) 0%, rgba(233, 223, 255, 0.98) 100%);
+  overflow: visible;
+  box-shadow: inset 0 12px 24px rgba(255, 255, 255, 0.75), 0 22px 45px rgba(107, 92, 255, 0.18);
+}
+
+.energyBarFill {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255, 237, 125, 0.95) 0%, rgba(255, 172, 65, 0.96) 55%, rgba(255, 106, 129, 0.98) 100%),
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.16) 0,
+      rgba(255, 255, 255, 0.16) 12px,
+      rgba(255, 255, 255, 0) 12px,
+      rgba(255, 255, 255, 0) 24px
+    );
+  box-shadow: inset 0 -16px 20px rgba(255, 132, 64, 0.28), 0 0 30px rgba(255, 180, 76, 0.45);
+  transition: height 500ms ease;
+}
+
+.energyMarker {
+  position: absolute;
+  left: 106px;
+  display: grid;
+  gap: 6px;
+  align-items: center;
+}
+
+.markerLabel {
+  font-size: 14px;
+  font-weight: 800;
+  color: #51307c;
+}
+
+.markerHint {
+  font-size: 12px;
+  opacity: 0.72;
+}
+
+.markerChest {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 88px;
+  min-height: 70px;
+  padding: 4px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 10px 24px rgba(83, 56, 131, 0.12);
+}
+
+.markerChestOpen {
+  background: linear-gradient(135deg, rgba(255, 244, 175, 0.96), rgba(255, 255, 255, 0.95));
+}
+
+.messageCard {
+  width: 100%;
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(255, 248, 212, 0.96), rgba(255, 255, 255, 0.95));
+  box-shadow: inset 0 0 0 1px rgba(255, 222, 125, 0.55);
+  font-weight: 700;
+}
+
+.actionGrid {
+  display: grid;
+  gap: 12px;
+}
+
+.actionButton {
+  width: 100%;
+  min-height: 76px;
+  height: auto;
+  padding: 14px 18px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  text-align: left;
+  font-weight: 700;
+}
+
+.actionButtonSecondary {
+  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(242,235,255,0.95));
+}
+
+.actionEmoji {
+  font-size: 24px;
+}
+
+.actionPoints {
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.notesBox {
+  margin: 0;
+  white-space: pre-wrap;
+  font-family: inherit;
+  line-height: 1.7;
+  background: #fffaf0;
+  padding: 12px;
+  border-radius: 16px;
+}
+
+.treasureChest {
+  position: relative;
+  width: 118px;
+  height: 96px;
+  filter: drop-shadow(0 10px 16px rgba(99, 61, 19, 0.25));
+}
+
+.treasureChestCompact {
+  width: 76px;
+  height: 62px;
+}
+
+.treasureBase,
+.treasureLid {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid #6f4312;
+  background: linear-gradient(180deg, #d58a2f 0%, #9b5d1d 100%);
+}
+
+.treasureBase {
+  bottom: 0;
+  width: 100%;
+  height: 52%;
+  border-radius: 18px 18px 22px 22px;
+}
+
+.treasureLid {
+  top: 12%;
+  width: 100%;
+  height: 42%;
+  border-radius: 22px 22px 14px 14px;
+  transform-origin: center bottom;
+  transition: transform 450ms ease;
+}
+
+.treasureLock {
+  position: absolute;
+  left: 50%;
+  bottom: 16%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 28px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #ffef99 0%, #f1ba2d 100%);
+  border: 3px solid #986b00;
+  z-index: 2;
+}
+
+.treasureGlow {
+  position: absolute;
+  inset: -8px;
+  border-radius: 26px;
+  background: radial-gradient(circle, rgba(255, 237, 140, 0.6) 0%, rgba(255, 224, 90, 0.14) 40%, rgba(255,255,255,0) 72%);
+  opacity: 0;
+  transition: opacity 350ms ease;
+}
+
+.treasureLight {
+  position: absolute;
+  width: 16px;
+  height: 46px;
+  bottom: 54%;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 225, 102, 0));
+  opacity: 0;
+  transform-origin: bottom center;
+}
+
+.treasureLight1 { left: 24%; transform: rotate(-16deg); }
+.treasureLight2 { left: 47%; transform: rotate(0deg); }
+.treasureLight3 { left: 69%; transform: rotate(16deg); }
+
+.treasureChestOpen .treasureLid {
+  transform: translateX(-50%) rotate(-32deg) translateY(-10px);
+}
+
+.treasureChestOpen .treasureGlow,
+.treasureChestOpen .treasureLight {
+  opacity: 1;
+}
+
+.treasureChestOpen .treasureLight {
+  animation: treasurePulse 1.3s ease-in-out infinite;
+}
+
+.celebrationOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.celebrationGlow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at center, rgba(255, 231, 127, 0.34) 0%, rgba(255, 203, 74, 0.18) 22%, rgba(85, 39, 117, 0.15) 52%, rgba(28, 18, 48, 0.58) 100%);
+}
+
+.celebrationCard {
+  position: relative;
+  z-index: 2;
+  width: min(92vw, 540px);
+  padding: 28px 20px;
+  border-radius: 28px;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(255, 248, 214, 0.98), rgba(255, 255, 255, 0.96));
+  box-shadow: 0 20px 60px rgba(49, 26, 79, 0.4);
+}
+
+.celebrationTitle {
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 900;
+  color: #62348f;
+  margin-bottom: 12px;
+}
+
+.celebrationSub {
+  margin-top: 18px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #694590;
+}
+
+.sparklePiece {
+  position: absolute;
+  top: 18%;
+  z-index: 1;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #fffef9 0%, #ffd84e 100%);
+  box-shadow: 0 0 18px rgba(255, 223, 100, 0.6);
+  animation: sparkleFall linear forwards;
+}
+
+@keyframes sparkleFall {
+  0% {
+    transform: translateY(-60px) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(70vh) rotate(220deg);
+    opacity: 0;
+  }
+}
+
+@keyframes treasurePulse {
+  0%, 100% { transform: scaleY(1) translateY(0); }
+  50% { transform: scaleY(1.12) translateY(-2px); }
+}
+
+@media (min-width: 900px) {
+  .playLayout {
+    grid-template-columns: minmax(320px, 380px) 1fr;
+    align-items: start;
+  }
+
+  .actionGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 899px) {
+  .topBar {
+    width: min(1180px, calc(100% - 12px));
+  }
+
+  .main {
+    width: min(1180px, calc(100% - 12px));
+  }
+
+  .energyBarScene {
+    width: 180px;
+    height: 440px;
+  }
+
+  .energyMarker {
+    left: 96px;
+  }
+}
+
+@media (max-width: 640px) {
+  .topBar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nav {
+    width: 100%;
+  }
+
+  .navLink {
+    flex: 1;
+  }
+
+  .scoreBadge {
+    font-size: 30px;
+  }
+
+  .energyBarScene {
+    height: 400px;
+    width: 160px;
+  }
+
+  .energyBarTrack {
+    width: 66px;
+  }
+
+  .energyMarker {
+    left: 82px;
+  }
+
+  .markerChest {
+    min-width: 72px;
+    min-height: 62px;
+  }
+
+  .actionButton {
+    grid-template-columns: auto 1fr;
+  }
+
+  .actionPoints {
+    grid-column: 2;
+    justify-self: end;
+  }
 }
 
 @media (min-width: 780px) {
