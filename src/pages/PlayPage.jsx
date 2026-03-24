@@ -3,10 +3,12 @@ import confetti from 'canvas-confetti'
 import { createFreshState, loadState, saveState } from '../lib/storage.js'
 
 const ACTIONS = [
-  { key: 'ring', label: '套圈圈套中 1 次', field: 'ringPoints', emoji: '⭕' },
-  { key: 'balloon1', label: '1 顆氣球 30 秒成功', field: 'balloon1Points', emoji: '🎈' },
-  { key: 'balloon2', label: '2 顆氣球 30 秒成功', field: 'balloon2Points', emoji: '🎈🎈' },
-  { key: 'balloon3', label: '3 顆氣球 30 秒成功', field: 'balloon3Points', emoji: '🎈🎈🎈' },
+  { key: 'ring1', label: '套圈圈 1 次', points: 3, emoji: '⭕' },
+  { key: 'ring2', label: '套圈圈 2 次', points: 6, emoji: '⭕⭕' },
+  { key: 'ring3', label: '套圈圈 3 次', points: 9, emoji: '⭕⭕⭕' },
+  { key: 'balloon1', label: '氣球 1 顆', points: 10, emoji: '🎈' },
+  { key: 'balloon3', label: '氣球 3 顆', points: 15, emoji: '🎈🎈🎈' },
+  { key: 'balloon4', label: '氣球 4 顆', points: 25, emoji: '🎈🎈🎈🎈' },
 ]
 
 export default function PlayPage() {
@@ -170,13 +172,11 @@ export default function PlayPage() {
     }, 3600)
   }
 
-  function addScore(field, label) {
-    const points = Number(state[field]) || 0
-    const isRingAction = field === 'ringPoints'
-    const cap = isRingAction ? state.stage1Target : state.stage2Target
+  function addScore(points, label, type) {
+    const cap = type === 'ring' ? state.stage1Target : state.stage2Target
 
     if (state.score >= cap) {
-      const lockedMessage = isRingAction
+      const lockedMessage = type === 'ring'
         ? `套圈圈關已達 ${state.stage1Target} 分，請前往氣球關！`
         : `總分已達 ${state.stage2Target} 分，準備開寶箱！`
       setMessage(lockedMessage)
@@ -203,7 +203,7 @@ export default function PlayPage() {
   }
 
   function subtractRing() {
-    const points = Number(state.ringPoints) || 0
+    const points = 3
     const nextScore = Math.max(0, state.score - points)
     const nextHistory = [`套圈圈更正 -${points}`, ...state.history].slice(0, 16)
     update({ ...state, score: nextScore, history: nextHistory }, `已更正套圈圈分數 -${points} 分。`)
@@ -279,11 +279,11 @@ export default function PlayPage() {
                   key={action.key}
                   type="button"
                   className="btn btnPrimary actionButton actionButtonHost"
-                  onClick={() => addScore(action.field, action.label)}
+                  onClick={() => addScore(action.points, action.label, action.key.startsWith('ring') ? 'ring' : 'balloon')}
                 >
                   <span className="actionEmoji">{action.emoji}</span>
                   <span>{action.label}</span>
-                  <span className="actionPoints">+{state[action.field]}</span>
+                  <span className="actionPoints">+{action.points}</span>
                 </button>
               ))}
               <button
@@ -293,7 +293,7 @@ export default function PlayPage() {
               >
                 <span className="actionEmoji">↩️</span>
                 <span>套圈圈分數更正</span>
-                <span className="actionPoints">-{state.ringPoints}</span>
+                <span className="actionPoints">-3</span>
               </button>
               <button
                 type="button"
