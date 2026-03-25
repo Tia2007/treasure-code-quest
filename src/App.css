@@ -12,7 +12,7 @@
   padding: 14px 16px 12px;
   margin: 8px auto 0;
   width: min(100vw - 12px, 1400px);
-  background: rgba(24, 26, 27, 0.78;
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: 18px;
   backdrop-filter: blur(8px);
