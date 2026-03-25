@@ -52,7 +52,7 @@ export default function AdminPage() {
           <Field label="2 顆氣球過關分數">
             <input className="input" type="number" value={state.balloon2Points} onChange={(e) => updateField('balloon2Points', Number(e.target.value))} />
           </Field>
-          <Field label="3 顆氣球過關分數">
+          <Field label="4 顆氣球過關分數">
             <input className="input" type="number" value={state.balloon3Points} onChange={(e) => updateField('balloon3Points', Number(e.target.value))} />
           </Field>
         </div>
