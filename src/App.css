@@ -235,13 +235,19 @@
 .markerHint { font-size: 11px; opacity: 0.76; font-weight: 700; color: #b5b8c1; }
 
 .markerChest {
-  display: inline-flex; align-items: center; justify-content: center;
-  min-width: 94px; min-height: 72px; padding: 4px; border-radius: 18px;
-  background: rgba(255,255,255,0.5); box-shadow: 0 10px 24px rgba(83,56,131,0.12);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 94px;
+  min-height: 72px;
+  padding: 4px;
+  border-radius: 18px;
+  background: rgba(117, 77, 0, 0.3);
+  box-shadow: 0 0 22px rgba(255, 180, 51, 0.18);
 }
-.markerChestFancy { background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,243,213,0.88)); }
+.markerChestFancy { background: linear-gradient(180deg, rgba(162, 108, 0, 0.62), rgba(126, 84, 0, 0.58)); }
 .markerChestHost { min-width: 96px; min-height: 72px; }
-.markerChestOpen { background: linear-gradient(135deg, rgba(255,244,175,0.96), rgba(255,255,255,0.95)); box-shadow: 0 12px 28px rgba(255,212,91,0.28); }
+.markerChestOpen { background: linear-gradient(135deg, rgba(157, 111, 0, 0.78), rgba(186, 136, 0, 0.72)); box-shadow: 0 0 24px rgba(255,212,91,0.24); }
 
 .messageCard {
   width: 100%;
@@ -311,9 +317,50 @@
 .treasureChestGiant { width: 248px; height: 196px; animation: chestBurst 0.8s cubic-bezier(.18,1.18,.3,1) both; }
 .treasureChestEpic { filter: drop-shadow(0 24px 28px rgba(255,185,61,0.34)) drop-shadow(0 0 24px rgba(255,234,152,0.35)); }
 .treasureAura {
-  position: absolute; inset: -38px; border-radius: 999px;
-  background: radial-gradient(circle, rgba(255,236,153,0.82) 0%, rgba(255,203,74,0.28) 42%, rgba(255,255,255,0) 74%);
-  opacity: 0; transform: scale(0.82);
+  position: absolute;
+  left: 50%;
+  top: -18px;
+  transform: translateX(-50%);
+  width: 150%;
+  height: 110%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  border-radius: 50% 50% 0 0 / 85% 85% 0 0;
+  background:
+    radial-gradient(
+      ellipse at center bottom,
+      rgba(255, 245, 200, 0.22) 0%,
+      rgba(255, 225, 120, 0.18) 22%,
+      rgba(255, 190, 70, 0.12) 40%,
+      rgba(255, 150, 40, 0.07) 58%,
+      rgba(255, 120, 20, 0.03) 72%,
+      rgba(255, 120, 20, 0) 100%
+    );
+  filter: blur(18px);
+}
+
+.treasureGlow {
+  position: absolute;
+  left: 50%;
+  top: -8px;
+  transform: translateX(-50%);
+  width: 112%;
+  height: 78%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  border-radius: 50% 50% 0 0 / 90% 90% 0 0;
+  background:
+    radial-gradient(
+      ellipse at center bottom,
+      rgba(255, 255, 240, 0.30) 0%,
+      rgba(255, 235, 150, 0.18) 28%,
+      rgba(255, 210, 90, 0.10) 50%,
+      rgba(255, 180, 50, 0.04) 68%,
+      rgba(255, 180, 50, 0) 100%
+    );
+  filter: blur(10px);
 }
 .treasureBase, .treasureLid {
   position: absolute; left: 50%; transform: translateX(-50%); border: 5px solid #6f4312; overflow: hidden;
@@ -352,9 +399,26 @@
   border: 4px solid #986b00; border-bottom: 0; border-radius: 14px 14px 0 0;
 }
 .treasureGlow {
-  position: absolute; inset: -14px; border-radius: 34px;
-  background: radial-gradient(circle, rgba(255,237,140,0.82) 0%, rgba(255,224,90,0.24) 44%, rgba(255,255,255,0) 74%);
-  opacity: 0; transition: opacity 350ms ease;
+  position: absolute;
+  left: 50%;
+  top: -8px;
+  transform: translateX(-50%);
+  width: 112%;
+  height: 78%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  border-radius: 50% 50% 0 0 / 90% 90% 0 0;
+  background:
+    radial-gradient(
+      ellipse at center bottom,
+      rgba(255, 255, 240, 0.30) 0%,
+      rgba(255, 235, 150, 0.18) 28%,
+      rgba(255, 210, 90, 0.10) 50%,
+      rgba(255, 180, 50, 0.04) 68%,
+      rgba(255, 180, 50, 0) 100%
+    );
+  filter: blur(10px);
 }
 .treasureFlash {
   position: absolute;
