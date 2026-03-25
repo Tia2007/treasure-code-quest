@@ -3,8 +3,8 @@ import confetti from 'canvas-confetti'
 import { createFreshState, loadState, saveState } from '../lib/storage.js'
 
 const ACTIONS = [
-  { key: 'ring1', label: '套圈圈 1 次', points: 3, emoji: '⭕' },
-  { key: 'balloon1', label: '氣球 1 顆', points: 10, emoji: '🎈' },
+  { key: 'ring1', label: '套圈圈 1 次', points: 3, emoji: '⭕x1' },
+  { key: 'balloon1', label: '氣球 1 顆', points: 10, emoji: '🎈x1' },
   { key: 'ring2', label: '套圈圈 2 次', points: 6, emoji: '⭕x2' },
   { key: 'balloon2', label: '氣球 2 顆', points: 15, emoji: '🎈x2' },
   { key: 'ring3', label: '套圈圈 3 次', points: 9, emoji: '⭕x3' },
