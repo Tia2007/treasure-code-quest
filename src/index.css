@@ -1,4 +1,23 @@
 :root {
+  --bg: #181a1b;
+  --panel: rgba(24, 26, 27, 0.85);
+  --text: #e8e6e3;
+  --text-soft: #b2aba1;
+  --border: rgba(48, 52, 54, 0.32);
+  --accent: #0e0095;
+  --success: #27c36a;
+  --danger: #9e001c;
+  color-scheme: dark;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+-------------------------------------------------------
+
+:root {
   --text: #0b1020;
   --card: rgba(255, 255, 255, 0.78);
   --card-strong: rgba(255, 255, 255, 0.92);
