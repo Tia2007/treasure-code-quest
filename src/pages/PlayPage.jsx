@@ -346,7 +346,7 @@ export default function PlayPage() {
                 onClick={subtractRing}
               >
                 <span className="actionEmoji">↩️</span>
-                <span>套圈圈分數更正</span>
+                <span>套圈分數更正</span>
                 <span className="actionPoints">-3</span>
               </button>
               <button
