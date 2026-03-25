@@ -42,7 +42,7 @@ body {
   background:
     radial-gradient(700px 320px at 12% 0%, rgba(255, 0, 132, 0.18) 0%, rgba(255, 0, 132, 0) 55%),
     radial-gradient(560px 260px at 88% 0%, rgba(0, 131, 255, 0.16) 0%, rgba(0, 131, 255, 0) 55%),
-    radial-gradient(550px 320px at 48% 100%, rgba(43, 255, 0, 0.18) 0%, rgba(43, 255, 0, 0) 45%),
+    radial-gradient(560px 380px at 48% 100%, rgba(43, 255, 0, 0.18) 0%, rgba(43, 255, 0, 0) 45%),
     linear-gradient(180deg, #05070c 0%, #06090f 45%, #04060a 100%);
   background-attachment: fixed;
 }
