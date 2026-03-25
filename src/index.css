@@ -2,7 +2,7 @@
 :root {
   --text: #0b1020;
   --card: rgba(24, 26, 27, 0.78);
-  --card-strong: rgba(255, 255, 255, 0.92);
+  --card-strong: rgba(24, 26, 27, 0.92);
   --border: rgba(255, 255, 255, 0.32);
   --border-strong: rgba(11, 16, 32, 0.18);
   --accent: #6b5cff;
