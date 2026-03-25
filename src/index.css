@@ -1,12 +1,12 @@
 
 :root {
-  --text: #0b1020;
-  --card: rgba(255, 255, 255, 0.78);
-  --card-strong: rgba(255, 255, 255, 0.92);
-  --border: rgba(255, 255, 255, 0.32);
-  --border-strong: rgba(11, 16, 32, 0.18);
-  --accent: #6b5cff;
-  --accent2: #ff5cd1;
+  --text: #f1f3f8;
+  --card: rgba(12, 16, 24, 0.84);
+  --card-strong: rgba(17, 21, 30, 0.94);
+  --border: rgba(31, 45, 70, 0.92);
+  --border-strong: rgba(58, 72, 100, 0.7);
+  --accent: #2200d4;
+  --accent2: #c9008c;
   --good: #27c36a;
   --bad: #ff4d6d;
 
@@ -17,7 +17,7 @@
   font-weight: 700;
 
   color: var(--text);
-  color-scheme: light;
+  color-scheme: dark;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -38,10 +38,12 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: radial-gradient(1200px 700px at 15% 0%, #ffdef5 0%, transparent 55%),
-    radial-gradient(900px 600px at 90% 10%, #d9f3ff 0%, transparent 55%),
-    radial-gradient(900px 700px at 60% 95%, #e6ffdf 0%, transparent 55%),
-    linear-gradient(180deg, #0a0f2a 0%, #120a2a 55%, #0a0f2a 100%);
+  color: var(--text);
+  background:
+    radial-gradient(700px 320px at 12% 0%, rgba(255, 0, 132, 0.18) 0%, rgba(255, 0, 132, 0) 55%),
+    radial-gradient(560px 260px at 88% 0%, rgba(0, 131, 255, 0.16) 0%, rgba(0, 131, 255, 0) 55%),
+    radial-gradient(420px 240px at 48% 100%, rgba(43, 255, 0, 0.18) 0%, rgba(43, 255, 0, 0) 45%),
+    linear-gradient(180deg, #05070c 0%, #06090f 45%, #04060a 100%);
   background-attachment: fixed;
 }
 
@@ -50,11 +52,11 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: 0.42;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.9) 1px, transparent 1px);
+  opacity: 0.14;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
   background-size: 28px 28px;
-  background-position: 0 0;
-  mix-blend-mode: screen;
 }
 
 a {
