@@ -42,33 +42,9 @@ body {
   background:
     radial-gradient(700px 320px at 12% 0%, rgba(255, 0, 132, 0.18) 0%, rgba(255, 0, 132, 0) 55%),
     radial-gradient(560px 300px at 88% 0%, rgba(0, 131, 255, 0.16) 0%, rgba(0, 131, 255, 0) 55%),
+    radial-gradient(780px 620px at 48% 100%, rgba(43, 255, 0, 0.28) 0%, rgba(43, 255, 0, 0) 65%),
     linear-gradient(180deg, #05070c 0%, #06090f 45%, #04060a 100%);
   background-attachment: fixed;
-  position: relative;
-  overflow-x: hidden;
-}
-
-body::after {
-  content: "";
-  position: fixed;
-  left: 50%;
-  bottom: -120px;
-  width: 900px;
-  height: 700px;
-  transform: translateX(-50%) scale(1);
-  transform-origin: center bottom;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.9;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(43, 255, 0, 0.3) 0%,
-    rgba(43, 255, 0, 0.16) 38%,
-    rgba(43, 255, 0, 0.08) 55%,
-    rgba(43, 255, 0, 0) 72%
-  );
-  filter: blur(10px);
-  animation: greenGlowBreath 4.8s ease-in-out infinite;
 }
 
 @keyframes greenGlowBreath {
