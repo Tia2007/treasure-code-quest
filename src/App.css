@@ -316,7 +316,7 @@
 .treasureChestCompact { width: 84px; height: 64px; }
 .treasureChestGiant { width: 248px; height: 196px; animation: chestBurst 0.8s cubic-bezier(.18,1.18,.3,1) both; }
 .treasureChestEpic { filter: drop-shadow(0 24px 28px rgba(255,185,61,0.34)) drop-shadow(0 0 24px rgba(255,234,152,0.35)); }
-.treasureAura {
+/* .treasureAura {
   position: absolute;
   left: 50%;
   top: 38%;
@@ -361,7 +361,14 @@
 
   filter: blur(10px);
   opacity: 0.95;
+} */
+
+.treasureAura {
+  position: absolute; inset: -38px; border-radius: 999px;
+  background: radial-gradient(circle, rgba(255,236,153,0.82) 0%, rgba(255,203,74,0.28) 42%, rgba(255,255,255,0) 74%);
+  opacity: 0; transform: scale(0.82);
 }
+
 .treasureBase, .treasureLid {
   position: absolute; left: 50%; transform: translateX(-50%); border: 5px solid #6f4312; overflow: hidden;
 }
