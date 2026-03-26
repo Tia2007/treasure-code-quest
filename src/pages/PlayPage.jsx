@@ -362,7 +362,7 @@ export default function PlayPage() {
               </button>
             </div>
           
-            <div className="actionGroups">
+            {/* <div className="actionGroups">
               <div className="actionGroup">
                 <div className="actionGroupTitle">套圈圈關</div>
                 <div className="actionGrid actionGridHost">
@@ -421,7 +421,79 @@ export default function PlayPage() {
                 </button>
               </div>
             </div>
-          </section>
+          </section> */}
+
+          <div className="actionColumns">
+  <div className="actionColumn">
+    <div className="actionGroupTitle">套圈圈關</div>
+    <div className="actionStack">
+      {RING_ACTIONS.map((action) => (
+        <button
+          key={action.key}
+          type="button"
+          className="btn btnPrimary actionButton actionButtonHost"
+          onClick={() => addScore(action.points, action.label, action.type)}
+        >
+          <span className="actionEmoji">{action.emoji}</span>
+          <span>{action.label}</span>
+          <span className="actionPoints">+{action.points}</span>
+        </button>
+      ))}
+
+      <button
+        type="button"
+        className="btn actionButton actionButtonSecondary actionButtonHost"
+        onClick={subtractRing}
+      >
+        <span className="actionEmoji">↩️</span>
+        <span>套圈分數更正</span>
+        <span className="actionPoints">-3</span>
+      </button>
+    </div>
+  </div>
+
+  <div className="actionColumn">
+    <div className="actionGroupTitle">氣球關</div>
+    <div className="actionStack">
+      {BALLOON_ACTIONS.map((action) => (
+        <button
+          key={action.key}
+          type="button"
+          className="btn btnPrimary actionButton actionButtonHost"
+          onClick={() => addScore(action.points, action.label, action.type)}
+        >
+          <span className="actionEmoji">{action.emoji}</span>
+          <span>{action.label}</span>
+          <span className="actionPoints">+{action.points}</span>
+        </button>
+      ))}
+
+      <button
+        type="button"
+        className="btn actionButton actionButtonSecondary actionButtonHost"
+        onClick={subtractBalloon}
+      >
+        <span className="actionEmoji">↩️</span>
+        <span>氣球分數更正</span>
+        <span className="actionPoints">-5</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              
 
           <div className="hostBottomGrid">
             <section className="panel panelCompact hostMiniPanel">
