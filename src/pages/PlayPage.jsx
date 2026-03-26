@@ -2,13 +2,25 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import confetti from 'canvas-confetti'
 import { createFreshState, loadState, saveState } from '../lib/storage.js'
 
-const ACTIONS = [
-  { key: 'ring1', label: '套圈圈 1 次', points: 3, emoji: '⭕' },
-  { key: 'balloon1', label: '氣球 1 顆', points: 10, emoji: '🎈' },
-  { key: 'ring2', label: '套圈圈 2 次', points: 6, emoji: '⭕' },
-  { key: 'balloon2', label: '氣球 2 顆', points: 15, emoji: '🎈' },
-  { key: 'ring3', label: '套圈圈 3 次', points: 9, emoji: '⭕' },
-  { key: 'balloon4', label: '氣球 4 顆', points: 25, emoji: '🎈' },
+// const ACTIONS = [
+//   { key: 'ring1', label: '套圈圈 1 次', points: 3, emoji: '⭕' },
+//   { key: 'balloon1', label: '氣球 1 顆', points: 10, emoji: '🎈' },
+//   { key: 'ring2', label: '套圈圈 2 次', points: 6, emoji: '⭕' },
+//   { key: 'balloon2', label: '氣球 2 顆', points: 15, emoji: '🎈' },
+//   { key: 'ring3', label: '套圈圈 3 次', points: 9, emoji: '⭕' },
+//   { key: 'balloon4', label: '氣球 4 顆', points: 25, emoji: '🎈' },
+// ]
+
+const RING_ACTIONS = [
+  { key: 'ring1', label: '套圈圈 1 次', points: 3, emoji: '⭕', type: 'ring' },
+  { key: 'ring2', label: '套圈圈 2 次', points: 6, emoji: '⭕', type: 'ring' },
+  { key: 'ring3', label: '套圈圈 3 次', points: 9, emoji: '⭕', type: 'ring' },
+]
+
+const BALLOON_ACTIONS = [
+  { key: 'balloon1', label: '氣球 1 顆', points: 10, emoji: '🎈', type: 'balloon' },
+  { key: 'balloon2', label: '氣球 2 顆', points: 15, emoji: '🎈', type: 'balloon' },
+  { key: 'balloon4', label: '氣球 4 顆', points: 25, emoji: '🎈', type: 'balloon' },
 ]
 
 export default function PlayPage() {
@@ -327,7 +339,7 @@ export default function PlayPage() {
               <h2 className="panelTitle">加分按鈕</h2>
               <button type="button" className="btn btnResetInline" onClick={resetProgress}>分數歸零</button>
             </div>
-            <div className="actionGrid actionGridHost">
+            {/* <div className="actionGrid actionGridHost">
               {ACTIONS.map((action) => (
                 <button
                   key={action.key}
@@ -340,6 +352,54 @@ export default function PlayPage() {
                   <span className="actionPoints">+{action.points}</span>
                 </button>
               ))}
+            </div> */}
+
+            <div className="actionGroups">
+              <div className="actionGroup">
+                <div className="actionGroupTitle">套圈圈關</div>
+                <div className="actionGrid actionGridHost">
+                  {RING_ACTIONS.map((action) => (
+                    <button
+                      key={action.key}
+                      type="button"
+                      className="btn btnPrimary actionButton actionButtonHost"
+                      onClick={() => addScore(action.points, action.label, action.type)}
+                    >
+                      <span className="actionEmoji">{action.emoji}</span>
+                      <span>{action.label}</span>
+                      <span className="actionPoints">+{action.points}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            
+              <div className="actionGroup">
+                <div className="actionGroupTitle">氣球關</div>
+                <div className="actionGrid actionGridHost">
+                  {BALLOON_ACTIONS.map((action) => (
+                    <button
+                      key={action.key}
+                      type="button"
+                      className="btn btnPrimary actionButton actionButtonHost"
+                      onClick={() => addScore(action.points, action.label, action.type)}
+                    >
+                      <span className="actionEmoji">{action.emoji}</span>
+                      <span>{action.label}</span>
+                      <span className="actionPoints">+{action.points}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+            
               <button
                 type="button"
                 className="btn actionButton actionButtonSecondary actionButtonHost"
