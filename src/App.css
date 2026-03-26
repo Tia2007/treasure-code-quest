@@ -247,7 +247,7 @@
 }
 .markerChestFancy { background: linear-gradient(180deg, rgba(162, 108, 0, 0.13), rgba(126, 84, 0, 0.13)); }
 .markerChestHost { min-width: 96px; min-height: 72px; }
-.markerChestOpen { background: linear-gradient(135deg, rgba(157, 111, 0, 0.78), rgba(186, 136, 0, 0.72)); box-shadow: 0 0 24px rgba(255,212,91,0.24); }
+.markerChestOpen { background: linear-gradient(135deg, rgba(157, 111, 0, 0.2), rgba(186, 136, 0, 0.72)); box-shadow: 0 0 24px rgba(255,212,91,0.24); }
 
 .messageCard {
   width: 100%;
