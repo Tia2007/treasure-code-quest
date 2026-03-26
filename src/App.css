@@ -546,8 +546,8 @@
   100% { transform: scale(1) translateY(0); opacity: 1; }
 }
 @keyframes auraPulse {
-  from { transform: scale(0.7); opacity: 0.72; }
-  to { transform: scale(1.5); opacity: 1; }
+  from { transform: scale(0.85); opacity: 0.72; }
+  to { transform: scale(1.2); opacity: 1; }
 }
 @keyframes lightGlow {
   0% { opacity: 0; transform: scale(0.78) rotate(var(--beam-from)); filter: blur(2.6px) drop-shadow(0 0 8px rgba(255,223,145,0.2)); }
