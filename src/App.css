@@ -315,7 +315,8 @@
 }
 .treasureChestCompact { width: 84px; height: 64px; }
 .treasureChestGiant { width: 248px; height: 196px; animation: chestBurst 0.8s cubic-bezier(.18,1.18,.3,1) both; }
-.treasureChestEpic { filter: drop-shadow(0 24px 28px rgba(255,185,61,0.34)) drop-shadow(0 0 24px rgba(255,234,152,0.35)); }
+.treasureChestEpic { filter: drop-shadow(0 20px 36px rgba(255,185,61,.5)) drop-shadow(0 -20px 36px rgba(255,234,152,0.7)); }
+/* .treasureChestEpic { filter: drop-shadow(0 24px 28px rgba(255,185,61,0.34)) drop-shadow(0 0 24px rgba(255,234,152,0.35)); } */
 /* .treasureAura {
   position: absolute;
   left: 50%;
