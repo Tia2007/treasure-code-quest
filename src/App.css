@@ -17,6 +17,49 @@
 }
 
 
+.actionColumns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.actionColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.actionStack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.actionGroupTitle {
+  font-weight: 700;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 820px) {
+  .actionColumns {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
