@@ -13,9 +13,9 @@
   padding: 14px 16px 12px;
   margin: 8px auto 0;
   width: min(100vw - 12px, 1400px);
-  background:
+  /* background:
     linear-gradient(90deg, rgba(122, 0, 84, 0.18) 0%, rgba(9, 17, 40, 0.78) 20%, rgba(9, 17, 40, 0.88) 78%, rgba(0, 110, 170, 0.18) 100%),
-    rgba(13, 17, 26, 0.9);
+    rgba(13, 17, 26, 0.9); */
   border: 1px solid rgba(36, 54, 84, 0.92);
   border-radius: 18px;
   backdrop-filter: blur(10px);
